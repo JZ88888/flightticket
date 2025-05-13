@@ -1,10 +1,8 @@
-✅ Commit directly to the main branch
 import streamlit as st
 from flight_scraper import get_mock_flights
 from utils import filter_flights
 
 st.set_page_config(page_title="FlightAgent ✈️", layout="centered")
-
 st.title("🛫 FlightAgent v1.0 – AI订票助手")
 
 st.markdown("请输入以下信息，我们将为你推荐最佳航班：")
@@ -35,37 +33,3 @@ if submitted:
             """)
     else:
         st.warning("未找到符合条件的航班，请尝试放宽限制或更换日期。")
-def get_mock_flights(from_city, to_city, date):
-    return [
-        {
-            "flight_no": "PR361",
-            "airline": "菲律宾航空",
-            "depart_time": "08:20",
-            "arrive_time": "13:15",
-            "price": 830,
-            "direct": True
-        },
-        {
-            "flight_no": "CZ3091",
-            "airline": "中国南方航空",
-            "depart_time": "06:30",
-            "arrive_time": "15:50",
-            "price": 710,
-            "direct": False
-        },
-        {
-            "flight_no": "CA179",
-            "airline": "中国国航",
-            "depart_time": "15:00",
-            "arrive_time": "19:40",
-            "price": 910,
-            "direct": True
-        }
-    ]
-def filter_flights(flights, max_price, direct_only):
-    result = []
-    for f in flights:
-        if f["price"] <= max_price and (not direct_only or f["direct"]):
-            result.append(f)
-    return result
-streamlit>=1.28
